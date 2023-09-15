@@ -53,8 +53,6 @@ namespace ViewFinder.Gameplay
         static Material BackgroundMaterial { get; set; }
         static Mesh BackgroundMesh { get; set; }
 
-        public bool[] ActivePlanes = new bool[6] { false, false, false, false, false, false };
-
         void Awake()
         {
             planes = new Plane[6];
@@ -150,7 +148,7 @@ namespace ViewFinder.Gameplay
 
                 renderCopy.lightmapIndex = renderOriginal.lightmapIndex;
                 renderCopy.lightmapScaleOffset = renderOriginal.lightmapScaleOffset;
-                MeshUtils.CutByPlanes(copy, planes.Where((p, i) => ActivePlanes[i]));
+                MeshUtils.CutByPlanes(copy, planes);
 
                 if (copy.GetComponent<MeshFilter>()?.mesh.vertices.Length == 0)
                     Destroy(copy);
