@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Gameplay
 {
     [RequireComponent(typeof(Renderer))]
     [RequireComponent(typeof(MeshFilter))]

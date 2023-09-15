@@ -1,8 +1,9 @@
-﻿using Unity.FPS.Game;
+﻿using UnityEngine.Events;
 using UnityEngine;
-using UnityEngine.Events;
+using ViewFinder.Gameplay;
+using ViewFinder.Debug;
 
-namespace Unity.FPS.Gameplay
+namespace ViewFinder.Managers
 {
     [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler))]
     public class PlayerCharacterController : MonoBehaviour

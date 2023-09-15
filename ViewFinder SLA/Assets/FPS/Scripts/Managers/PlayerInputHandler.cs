@@ -1,7 +1,8 @@
-﻿using Unity.FPS.Game;
-using UnityEngine;
+﻿using ViewFinder.Gameplay;
+using ViewFinder.Debug;
+using UnityEngine; 
 
-namespace Unity.FPS.Gameplay
+namespace ViewFinder.Managers
 {
     public class PlayerInputHandler : MonoBehaviour
     {

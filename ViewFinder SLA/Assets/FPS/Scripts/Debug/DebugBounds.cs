@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Debug
 {
     public class DebugBounds : MonoBehaviour
     {

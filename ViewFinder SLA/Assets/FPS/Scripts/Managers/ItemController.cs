@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Gameplay
 {
     [System.Serializable]
     public abstract class ItemController : MonoBehaviour

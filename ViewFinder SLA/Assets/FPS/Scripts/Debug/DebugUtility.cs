@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Debug
 {
     public static class DebugUtility
     {
@@ -10,7 +10,7 @@ namespace Unity.FPS.Game
 #if UNITY_EDITOR
             if (component == null)
             {
-                Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
+                UnityEngine.Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
                                " expected to find a component of type " + typeof(TO) + " on GameObject " +
                                onObject.name + ", but none were found.");
             }
@@ -22,7 +22,7 @@ namespace Unity.FPS.Game
 #if UNITY_EDITOR
             if (obj == null)
             {
-                Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
+                UnityEngine.Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
                                " expected to find an object of type " + typeof(TO) +
                                " in the scene, but none were found.");
             }
@@ -34,7 +34,7 @@ namespace Unity.FPS.Game
 #if UNITY_EDITOR
             if (count == 0)
             {
-                Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
+                UnityEngine.Debug.LogError("Error: Component of type " + typeof(TS) + " on GameObject " + source.gameObject.name +
                                " expected to find at least one component of type " + typeof(TO) + " on GameObject " +
                                onObject.name + ", but none were found.");
             }
@@ -46,7 +46,7 @@ namespace Unity.FPS.Game
 #if UNITY_EDITOR
             if (count > 1)
             {
-                Debug.LogWarning("Warning: Component of type " + typeof(TS) + " on GameObject " +
+                UnityEngine.Debug.LogWarning("Warning: Component of type " + typeof(TS) + " on GameObject " +
                                  source.gameObject.name +
                                  " expected to find only one component of type " + typeof(TO) + " on GameObject " +
                                  onObject.name + ", but several were found. First one found will be selected.");

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.FPS.Game;
+using ViewFinder.Gameplay;
 using UnityEngine;
 using System.Linq;
 using System;
@@ -136,6 +136,7 @@ public class MeshUtils
         var planeNormal = plane.flipped.normal;
         var newEdgesPolygonsCycles = new List<List<Vector3>>();
 
+        Debug.Log(newEdgesPoints2.Aggregate("", (str, e) => str + $"{e}, {newEdgesPoints1.IndexOf(e)},\n"));
         int new_i = -1;
         while (newEdgesPoints1.Count != 0)
         {
@@ -163,7 +164,7 @@ public class MeshUtils
             var pivotIndex = indexes[0];
             for (int i = 1; i < cycle.Count - 1; i++)
             {
-                // Debug.Log("CYCLE");
+                Debug.Log("FACE");
                 newTrigsSubMesh2.AddRange(new int[] { pivotIndex, indexes[i + 1], indexes[i] });
             }
             // var trigs = cycle.Select((value, index) => new { value, index })

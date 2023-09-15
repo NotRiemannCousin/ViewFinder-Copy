@@ -5,7 +5,7 @@ using UnityEngine;
 using Unity.Collections;
 using static UnityEngine.Mesh;
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Gameplay
 {
     // public struct PhotoJob : IJob
     // {
@@ -50,41 +50,47 @@ namespace Unity.FPS.Game
 
 
         Texture BackgroundTexture { get; set; }
-        Material BackgroundMaterial { get; set; }
-        Mesh BackgroundMesh { get; set; }
+        static Material BackgroundMaterial { get; set; }
+        static Mesh BackgroundMesh { get; set; }
 
-        public bool[] ActivePlanes = new bool[6]{false, false, false, false, false, false};
+        public bool[] ActivePlanes = new bool[6] { false, false, false, false, false, false };
 
         void Awake()
         {
             planes = new Plane[6];
-            BackgroundMaterial = new Material(Shader.Find("Unlit/Texture"))
+            if (BackgroundMaterial is null)
             {
-                mainTexture = BackgroundTexture,
-                color = Color.white
-            };
-            BackgroundMaterial.SetInt("_Smoothness", 0);
-
-            var distance = CameraObjects.farClipPlane / 4;
-            var length = Mathf.Tan(CameraObjects.fieldOfView * Mathf.Deg2Rad / 2) * distance;
-
-            BackgroundMesh = new Mesh
-            {
-                vertices = new Vector3[]
+                BackgroundMaterial = new Material(Shader.Find("Unlit/Texture"))
                 {
+                    mainTexture = BackgroundTexture,
+                    color = Color.white
+                };
+                BackgroundMaterial.SetInt("_Smoothness", 0);
+            }
+
+            if (BackgroundMesh is null)
+            {
+                var distance = CameraObjects.farClipPlane / 4;
+                var length = Mathf.Tan(CameraObjects.fieldOfView * Mathf.Deg2Rad / 2) * distance;
+
+                BackgroundMesh = new Mesh
+                {
+                    vertices = new Vector3[]
+                    {
                     new Vector3(-length, length, distance),
                     new Vector3(length, length, distance),
                     new Vector3(length, -length, distance),
                     new Vector3(-length, -length, distance),
-                },
-                triangles = new[] { 0, 1, 3, 1, 2, 3 },
-                uv = new[] {
+                    },
+                    triangles = new[] { 0, 1, 3, 1, 2, 3 },
+                    uv = new[] {
                     new Vector2(0, 1),
                     new Vector2(1, 1),
                     new Vector2(1, 0),
                     new Vector2(0, 0),
                 }
-            };
+                };
+            }
         }
 
         public void SayX()
@@ -92,7 +98,7 @@ namespace Unity.FPS.Game
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
             m_projections = new List<Slicerable>();
 
-            Slicerable[] Projections = FindObjectsOfType<Slicerable>();
+            Slicerable[] Projections = FindObjectsOfType<Slicerable>().Where(p => p.isActiveAndEnabled).ToArray();
             BackgroundTexture = TextureUtils.GetScreenshot(CameraBackground);
             PictureTexture = TextureUtils.GetScreenshot(CameraObjects);
 

@@ -1,11 +1,6 @@
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Experimental.Rendering;
-using System.Linq;
 
-namespace Unity.FPS.Game
+namespace ViewFinder.Gameplay
 {
     public class DaVinciCamera : ItemController
     {

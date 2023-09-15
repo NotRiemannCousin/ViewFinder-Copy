@@ -1,6 +1,7 @@
 {
     "files.exclude":
     {
+        "**/Unity*.csproj": true,
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,

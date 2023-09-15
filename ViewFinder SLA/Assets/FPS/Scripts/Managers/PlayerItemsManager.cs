@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using Unity.FPS.Game;
-using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine;
+using ViewFinder.Gameplay;
+using ViewFinder.Debug;
 
-namespace Unity.FPS.Gameplay
+namespace ViewFinder.Managers
 {
     public enum PositionType
     {

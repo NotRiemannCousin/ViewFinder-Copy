@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 7471544451470297359}
-  m_IndirectSpecularColor: {r: 0.131602, g: 0.36078173, b: 0.6385578, a: 1}
+  m_IndirectSpecularColor: {r: 0.13162136, g: 0.35988522, b: 0.6391072, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,7 +477,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -904040641858754901, guid: e28208b633a0e1347b9cb1fad6b21bca, type: 3}
 --- !u!114 &2034980587 stripped
@@ -676,6 +676,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1791021718884840133, guid: e28208b633a0e1347b9cb1fad6b21bca,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1791021718884840133, guid: e28208b633a0e1347b9cb1fad6b21bca,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ebc933b5a9596ad46b5a4060b7a8b147, type: 2}
@@ -692,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e28208b633a0e1347b9cb1fad6b21bca,
         type: 3}
       propertyPath: m_Name
-      value: scenary 4 backup
+      value: Scenary
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e28208b633a0e1347b9cb1fad6b21bca,
         type: 3}
@@ -1045,27 +1050,27 @@ PrefabInstance:
     - target: {fileID: 5778655821380479053, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: ActivePlanes.Array.data[1]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5778655821380479053, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: ActivePlanes.Array.data[2]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5778655821380479053, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: ActivePlanes.Array.data[3]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5778655821380479053, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: ActivePlanes.Array.data[4]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5778655821380479053, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: ActivePlanes.Array.data[5]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6063623088164646928, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
@@ -1156,7 +1161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &7471544451470297359
 Light:
   m_ObjectHideFlags: 0
