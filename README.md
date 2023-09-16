@@ -2,7 +2,7 @@
 
 An exercise in Unity involves recreating a game mechanic from a game called 'Viewfinder'. This mechanic revolves around copying objects based on the camera perspective and then placing them back into the world.
 
-    <iframe width="560" height="315"
+<iframe width="560" height="315"
 src="https://www.youtube.com/embed/k_lIQ2EZRH8" 
 frameborder="0" 
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
