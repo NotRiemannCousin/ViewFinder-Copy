@@ -2,7 +2,11 @@
 
 An exercise in Unity involves recreating a game mechanic from a game called 'Viewfinder'. This mechanic revolves around copying objects based on the camera perspective and then placing them back into the world.
 
-<iframe src="https://youtube.com/k_lIQ2EZRH8?si=nmOwEoT_hhqiOxEi" title="Viewfinder"></iframe>
+    <iframe width="560" height="315"
+src="https://www.youtube.com/embed/k_lIQ2EZRH8" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen title="Viewfinder Trailer"></iframe>
 
 ## Important
 - If the mesh is not planar, then it must be convex.
