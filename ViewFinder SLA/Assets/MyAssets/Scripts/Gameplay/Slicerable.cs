@@ -8,38 +8,37 @@ namespace ViewFinder.Gameplay
     {
         public static Material DefaultMaterial;
 
-        [Header("Cut Info")]
-        [Tooltip("The material asigned to the triangles in the cutted planes")]
-        // get material of the path 
-        public Material CuttingMaterial;
+        [Tooltip("The material asigned to the new triangles created by the planes intersection")]
+        [field: SerializeField]
+        Material CuttingMaterial { get; private set; }
         public bool isCopy { get; private set; }
-        Renderer Render { get; set; }
 
-        void Awake()
+        [RuntimeInitializeOnLoad(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void Initialize()
         {
-            if (DefaultMaterial is not null)
-                return;
+            if (DefaultMaterial) return;
+
             DefaultMaterial = new Material(Shader.Find("Unlit/Texture"))
             {
                 color = Color.gray
             };
             DefaultMaterial.SetInt("_Smoothness", 0);
         }
-
         private void Start()
         {
             CuttingMaterial = CuttingMaterial ?? DefaultMaterial;
         }
         public void SetAsCopy()
         {
-            Render = GetComponent<Renderer>();
             if (isCopy)
                 return;
             isCopy = true;
-            Render.materials = new Material[] {
-                Render.material,
+            var render = GetComponent<Renderer>();
+
+            render.materials = new Material[] {
+                render.material,
                 CuttingMaterial
-                };
+            };
         }
     }
 }
