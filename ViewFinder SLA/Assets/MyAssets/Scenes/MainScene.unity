@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 90
-  m_AmbientSkyColor: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 1}
+  m_AmbientSkyColor: {r: 0.754717, g: 0.6016376, b: 0.6016376, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 7471544451470297359}
-  m_IndirectSpecularColor: {r: 0.13162136, g: 0.35988522, b: 0.6391072, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -70,7 +70,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
-    m_ReflectionCompression: 2
+    m_ReflectionCompression: 0
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!64 &280116084
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!65 &391934753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!1 &880607500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 503651879529370588, guid: e28208b633a0e1347b9cb1fad6b21bca,
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!1 &974413195 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3852341972610935857, guid: e28208b633a0e1347b9cb1fad6b21bca,
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!64 &974413200
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!1 &1288535142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8134837689134937748, guid: e28208b633a0e1347b9cb1fad6b21bca,
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!65 &1288535145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!114 &1447778751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!1 &1708730607 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7781779711838953621, guid: e28208b633a0e1347b9cb1fad6b21bca,
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf082273b5f3254b96678c892eb7a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CuttingMaterial: {fileID: 2100000, guid: 35fe0b7167cdb944a868e2996465f9da, type: 2}
+  <CuttingMaterial>k__BackingField: {fileID: 0}
 --- !u!1 &1849630719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1807044559800000809, guid: e28208b633a0e1347b9cb1fad6b21bca,

@@ -42,10 +42,10 @@ namespace ViewFinder.Managers
         public bool IsAiming { get; private set; }
         public int ActiveItemIndex { get; private set; }
 
-        private PlayerInputHandler m_InputHandler;
-        private PlayerCharacterController m_PlayerCharacterController;
+        PlayerInputHandler m_InputHandler;
+        PlayerCharacterController m_PlayerCharacterController;
 
-        private void Start()
+        void Start()
         {
             ActiveItemIndex = 0;
 
@@ -64,7 +64,7 @@ namespace ViewFinder.Managers
             ItemParentSocket.position = AimingItemPosition.position;}
 
 
-        private void Update()
+        void Update()
         {
             LerpPosition();
 
@@ -84,7 +84,7 @@ namespace ViewFinder.Managers
         }
 
 
-        private void LerpPosition()
+        void LerpPosition()
         {
             Vector3 destinationPos = DefaultItemPosition.localPosition;
 

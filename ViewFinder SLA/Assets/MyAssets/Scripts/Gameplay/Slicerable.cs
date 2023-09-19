@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 
 namespace ViewFinder.Gameplay
 {
@@ -6,27 +7,42 @@ namespace ViewFinder.Gameplay
     [RequireComponent(typeof(MeshFilter))]
     public class Slicerable : MonoBehaviour
     {
-        public static Material DefaultMaterial;
+        static Material DefaultMaterial;
+        static readonly string ShaderString = "Universal Render Pipeline/Lit";
 
-        [Tooltip("The material asigned to the new triangles created by the planes intersection")]
-        [field: SerializeField]
-        Material CuttingMaterial { get; private set; }
-        public bool isCopy { get; private set; }
 
-        [RuntimeInitializeOnLoad(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Initialize()
+        [Tooltip("The material asigned to the new triangles created by the planes intersections")]
+        [SerializeField] Material CuttingMaterial = null;
+        public bool isCopy { get; private set; } = false;
+
+
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void Initialize()
         {
             if (DefaultMaterial) return;
 
-            DefaultMaterial = new Material(Shader.Find("Unlit/Texture"))
+            if (!Shader.Find(ShaderString))
+            {
+                UnityEngine.Debug.LogError($"Shader {ShaderString} not found.");
+                return;
+            }
+
+            DefaultMaterial = new Material(Shader.Find(ShaderString))
             {
                 color = Color.gray
             };
             DefaultMaterial.SetInt("_Smoothness", 0);
         }
-        private void Start()
+        void Start()
         {
-            CuttingMaterial = CuttingMaterial ?? DefaultMaterial;
+            // CuttingMaterial = null;
+            // UnityEngine.Debug.Log(CuttingMaterial?.shader + " " +
+            // (CuttingMaterial is null));
+            // CuttingMaterial = CuttingMaterial ?? DefaultMaterial;
+            // if(CuttingMaterial is null || CuttingMaterial?.shader is null)
+            if (!CuttingMaterial || !CuttingMaterial.shader)
+                CuttingMaterial = DefaultMaterial;
         }
         public void SetAsCopy()
         {

@@ -3,44 +3,44 @@ using UnityEngine;
 
 namespace ViewFinder.Debug
 {
+    [RequireComponent(typeof(MeshFilter))]
     public class DebugMesh : MonoBehaviour
     {
-        private Mesh mesh;
-        private Vector3[] verts;
-        private Vector3[] norms;
+        Mesh mesh;
+        Vector3[] verts;
+        Vector3[] norms;
 
         public bool showVerts = true;
         public bool showNormals = true;
         public bool showTrigs = true;
 
-        private void Start()
+        void Start()
         {
             mesh = GetComponent<MeshFilter>().mesh;
         }
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             verts = mesh.vertices;
             norms = mesh.normals;
         }
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             if (verts == null)
                 return;
 
-            // Draw verts and normals
             for (int i = 0; i < verts.Length; i++)
             {
                 var vertex = verts[i];
                 var normal = norms[i];
                 var transformedVertex = transform.TransformPoint(vertex);
 
-                // if (showVerts)
+                if (showVerts)
                 {
                     Gizmos.color = Color.red;
                     Gizmos.DrawSphere(transformedVertex, 0.05f);
                 }
 
-                // if (showNormals)
+                if (showNormals)
                 {
                     Gizmos.color = Color.blue;
                     var transformedNormal = transform.TransformVector(normal);
@@ -48,8 +48,7 @@ namespace ViewFinder.Debug
                 }
             }
 
-            // Draw triangles
-            // if (showTrigs)
+            if (showTrigs)
             {
                 Gizmos.color = Color.yellow;
                 for (var i = 0; i < verts.Length; i += 3)

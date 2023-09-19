@@ -6,13 +6,10 @@ using System;
 
 public class MeshUtils
 {
-    private static void MeshCut(Plane plane, Mesh mesh, Transform Pos)
+    // TODO: Make a new Method like this but with MeshData(for Jobs)
+    // TODO: Instead of use transform methods on points, use transform methods the plane  
+    static void MeshCut(Plane plane, Mesh mesh, Transform Pos)
     {
-        Debug.Log("Cutting mesh: " + mesh.name);
-        // var plane = new Plane(
-        //     Pos.InverseTransformPoint(p.ClosestPointOnPlane(Vector3.zero)),
-        //     Pos.InverseTransformDirection(p.normal)
-        // );
         #region initialize variables
         mesh.subMeshCount = 2;
 
@@ -98,7 +95,7 @@ public class MeshUtils
                     break;
             }
         }
-        // isInSubMesh2 = true;
+        isInSubMesh2 = true;
         for (int i = 0; i < submesh2Triangles.Count; i += 3)
         {
             verts = new List<int> {
@@ -133,10 +130,10 @@ public class MeshUtils
         #endregion
 
         #region triangulate new edges
+        // * replace with the method of Triangulation when implemented
         var planeNormal = plane.flipped.normal;
         var newEdgesPolygonsCycles = new List<List<Vector3>>();
 
-        Debug.Log(newEdgesPoints2.Aggregate("", (str, e) => str + $"{e}, {newEdgesPoints1.IndexOf(e)},\n"));
         int new_i = -1;
         while (newEdgesPoints1.Count != 0)
         {
@@ -156,7 +153,6 @@ public class MeshUtils
 
         foreach (var cycle in newEdgesPolygonsCycles)
         {
-            Debug.Log("New Cycle: " + cycle.Count);
             for (int i = 1; i < cycle.Count - 2; i++)
                 if (AreCollinear(cycle[i - 1], cycle[i], cycle[i + 1]))
                     cycle.RemoveAt(i);
@@ -164,7 +160,6 @@ public class MeshUtils
             var pivotIndex = indexes[0];
             for (int i = 1; i < cycle.Count - 1; i++)
             {
-                Debug.Log("FACE");
                 newTrigsSubMesh2.AddRange(new int[] { pivotIndex, indexes[i + 1], indexes[i] });
             }
             // var trigs = cycle.Select((value, index) => new { value, index })
@@ -191,13 +186,14 @@ public class MeshUtils
 
         mesh.SetTriangles(newTrigsSubMesh1, 0);
         mesh.SetTriangles(newTrigsSubMesh2, 1);
-        // currentMesh.SetIndices(cuttedTriangles, MeshTopology.Triangles, 1);
         #endregion
 
         #region Local Functions
 
         bool isInPositiveSide(Vector3 v) => plane.GetSide(v);
 
+        // Try to add a existing Vertice to the new mesh or create a new one and return its index.
+        // If the Vertice is already added (exist a Vertice with same position, normal, UV and UV2), return its index.
         int TryAddOldVert(int index)
         {
             if (alreadyAdded[index])
@@ -228,6 +224,8 @@ public class MeshUtils
             return index;
         }
 
+        // Given 2 Vertices (first in positive side and second in negative side of the plane),
+        // and 
         int EdgeCut(int Vin, int Vout)
         {
             // vertice index - inside, vertice index - outside
@@ -260,6 +258,7 @@ public class MeshUtils
             return newVertIndex;
         }
 
+        // Add the Vertices to the new mesh according the 3 possible cases.
         void Check2In1Out(int index1In, int index2In, int index3Out)
         {
             int newVert1Index = EdgeCut(index1In, index3Out);
@@ -312,6 +311,7 @@ public class MeshUtils
         #endregion
     }
 
+    // TODO: Implement this but with other algorithm
     public static IEnumerable<IEnumerable<int>> FanTriangulation(IEnumerable<int> edges)
     {
         throw new NotImplementedException();
@@ -326,8 +326,12 @@ public class MeshUtils
 
     public static IEnumerable<Vector3> TransformPoints(Transform transform, IEnumerable<Vector3> points, bool useInverse = false)
     {
-        foreach (var point in points)
-            yield return useInverse ? transform.InverseTransformPoint(point) : transform.TransformPoint(point);
+        if(useInverse)
+            foreach (var point in points)
+                yield return transform.InverseTransformPoint(point);
+        else
+            foreach (var point in points)
+                yield return  transform.TransformPoint(point);
     }
 
 
@@ -408,22 +412,22 @@ public class MeshUtils
         return mesh;
     }
 
-    private static Mesh TerrainColliderToMesh(TerrainCollider c)
+    static Mesh TerrainColliderToMesh(TerrainCollider c)
     {
         throw new NotImplementedException();
     }
 
-    private static Mesh CapsuleColliderToMesh(CapsuleCollider c)
+    static Mesh CapsuleColliderToMesh(CapsuleCollider c)
     {
         throw new NotImplementedException();
     }
 
-    private static Mesh SphereColliderToMesh(SphereCollider c)
+    static Mesh SphereColliderToMesh(SphereCollider c)
     {
         throw new NotImplementedException();
     }
 
-    private static Mesh BoxColliderToMesh(BoxCollider boxCollider)
+    static Mesh BoxColliderToMesh(BoxCollider boxCollider)
     {
         var mesh = new Mesh();
         var vertices = new List<Vector3>(8);
@@ -458,4 +462,3 @@ public class MeshUtils
     }
     #endregion
 }
-

@@ -2,12 +2,13 @@ using UnityEngine;
 
 namespace ViewFinder.Gameplay
 {
+    // * Maybe I should change the name, but I have no ideas for now...
     public class DaVinciCamera : ItemController
     {
         #region Properties
-        public Camera SkyCamera;
-        public Camera CameraTarget;
-        public Photo _Photo;
+        [SerializeField] Camera SkyCamera;
+        [SerializeField] Camera CameraTarget;
+        [SerializeField] Photo _Photo;
         #endregion
 
 

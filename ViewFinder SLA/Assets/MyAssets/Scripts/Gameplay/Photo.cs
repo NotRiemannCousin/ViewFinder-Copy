@@ -5,57 +5,34 @@ using UnityEngine;
 using Unity.Collections;
 using static UnityEngine.Mesh;
 
+// TODO: Make this run using Jobs
+// TODO: Crop the objects that are already in the scene but with reverse Planes
+
 namespace ViewFinder.Gameplay
 {
-    // public struct PhotoJob : IJob
-    // {
-    //     [ReadOnly]
-    //     public MeshDataArray readMeshes;
-    //     public MeshDataArray writeMeshes;
-    //     public NativeArray<Matrix4x4> projectionMatrices;
-    //     public NativeArray<Plane> planes { get; set; }
-    //     public PhotoJob(MeshDataArray readMeshes, MeshDataArray writeMeshes, NativeArray<Matrix4x4> projectionMatrices, NativeArray<Plane> planes)
-    //     {
-    //         this.readMeshes = readMeshes;
-    //         this.writeMeshes = writeMeshes;
-    //         this.projectionMatrices = projectionMatrices;
-    //         this.planes = planes;
-    //     }
-
-    //     public void Execute()
-    //     {
-    //         for (int i = 0; i < readMeshes.Length; i++)
-    //         {
-    //             var mesh = writeMeshes[i];
-    //             // MeshUtils.CopyMesh(readMeshes[i], ref mesh);
-    //         }
-    //         // if (readMeshes.Length == 0)
-    //         //     return;
-    //         // Debug.Log("Printing");
-    //         // MeshUtils.CutByPlanesJob(readMeshes, ref writeMeshes, planes, projectionMatrices);
-
-    //     }
-    // }
-
     public class Photo : ItemController
     {
-        public Camera CameraBackground;
-        public Camera CameraObjects;
+        [Tooltip("Reference to a Camera that can only see the Skybox, for the photo in background.")]
+        [SerializeField] Camera CameraBackground;
 
-        GameObject PhotoOutputParent { get; set; }
-        Texture PictureTexture { get; set; }
-        List<Slicerable> m_projections { get; set; }
-        Plane[] planes { get; set; }
-        JobHandle jobHandle { get; set; }
+        [Tooltip("Reference to the Camera that will be displayed in the photo.")]
+        [SerializeField] Camera CameraObjects;
+
+        GameObject PhotoOutputParent;
+        Texture PictureTexture;
+        List<Slicerable> projections;
+        Plane[] planes;
 
 
-        Texture BackgroundTexture { get; set; }
-        static Material BackgroundMaterial { get; set; }
-        static Mesh BackgroundMesh { get; set; }
+        Texture BackgroundTexture;
+        static Material BackgroundMaterial;
+        static Mesh BackgroundMesh;
+
 
         void Awake()
-        {
+        { 
             planes = new Plane[6];
+            
             if (BackgroundMaterial is null)
             {
                 BackgroundMaterial = new Material(Shader.Find("Unlit/Texture"))
@@ -66,35 +43,36 @@ namespace ViewFinder.Gameplay
                 BackgroundMaterial.SetInt("_Smoothness", 0);
             }
 
-            if (BackgroundMesh is null)
-            {
-                var distance = CameraObjects.farClipPlane / 4;
-                var length = Mathf.Tan(CameraObjects.fieldOfView * Mathf.Deg2Rad / 2) * distance;
+            if (BackgroundMesh)
+                return;
 
-                BackgroundMesh = new Mesh
+            var distance = CameraObjects.farClipPlane / 4;
+            var length = Mathf.Tan(CameraObjects.fieldOfView * Mathf.Deg2Rad / 2) * distance;
+
+            BackgroundMesh = new Mesh
+            {
+                vertices = new Vector3[]
                 {
-                    vertices = new Vector3[]
-                    {
                     new Vector3(-length, length, distance),
                     new Vector3(length, length, distance),
                     new Vector3(length, -length, distance),
                     new Vector3(-length, -length, distance),
-                    },
-                    triangles = new[] { 0, 1, 3, 1, 2, 3 },
-                    uv = new[] {
+                },
+                triangles = new[] { 0, 1, 3, 1, 2, 3 },
+                uv = new[] {
                     new Vector2(0, 1),
                     new Vector2(1, 1),
                     new Vector2(1, 0),
                     new Vector2(0, 0),
                 }
-                };
-            }
+            };
         }
+
 
         public void SayX()
         {
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
-            m_projections = new List<Slicerable>();
+            projections = new List<Slicerable>();
 
             Slicerable[] Projections = FindObjectsOfType<Slicerable>().Where(p => p.isActiveAndEnabled).ToArray();
             BackgroundTexture = TextureUtils.GetScreenshot(CameraBackground);
@@ -111,10 +89,9 @@ namespace ViewFinder.Gameplay
                     continue;
 
                 var bounds = renderer.bounds;
-                // add the default to top
 
                 if (GeometryUtility.TestPlanesAABB(planes, bounds))
-                    m_projections.Add(projection);
+                    projections.Add(projection);
             }
             gameObject.SetActive(true);
 
@@ -135,7 +112,7 @@ namespace ViewFinder.Gameplay
             PhotoOutputParent.transform.position = CameraObjects.transform.position;
             PhotoOutputParent.transform.rotation = CameraObjects.transform.rotation;
 
-            foreach (var original in m_projections)
+            foreach (var original in projections)
             {
                 var copy = Instantiate(
                         original,
@@ -153,7 +130,6 @@ namespace ViewFinder.Gameplay
                 if (copy.GetComponent<MeshFilter>()?.mesh.vertices.Length == 0)
                     Destroy(copy);
             }
-
             PhotoOutputParent.SetActive(false);
         }
 
@@ -165,3 +141,37 @@ namespace ViewFinder.Gameplay
         }
     }
 }
+
+
+// May be useful, but Im lazy to fix it
+
+
+// public struct PhotoJob : IJob
+// {
+//     [ReadOnly]
+//     public MeshDataArray readMeshes;
+//     public MeshDataArray writeMeshes;
+//     public NativeArray<Matrix4x4> projectionMatrices;
+//     public NativeArray<Plane> planes;
+//     public PhotoJob(MeshDataArray readMeshes, MeshDataArray writeMeshes, NativeArray<Matrix4x4> projectionMatrices, NativeArray<Plane> planes)
+//     {
+//         this.readMeshes = readMeshes;
+//         this.writeMeshes = writeMeshes;
+//         this.projectionMatrices = projectionMatrices;
+//         this.planes = planes;
+//     }
+
+//     public void Execute()
+//     {
+//         for (int i = 0; i < readMeshes.Length; i++)
+//         {
+//             var mesh = writeMeshes[i];
+//             // MeshUtils.CopyMesh(readMeshes[i], ref mesh);
+//         }
+//         // if (readMeshes.Length == 0)
+//         //     return;
+//         // Debug.Log("Printing");
+//         // MeshUtils.CutByPlanesJob(readMeshes, ref writeMeshes, planes, projectionMatrices);
+
+//     }
+// }

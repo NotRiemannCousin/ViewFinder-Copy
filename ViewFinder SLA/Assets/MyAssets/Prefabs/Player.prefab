@@ -391,7 +391,6 @@ GameObject:
   - component: {fileID: 7029566833271223142}
   - component: {fileID: 1861735508520978660}
   - component: {fileID: 5930758112942400696}
-  - component: {fileID: 7095502492479124911}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -503,23 +502,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &7095502492479124911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8570724551575916196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: df837a1f5737d5a489993708ca80ccc9, type: 2}
 --- !u!1 &8811376439220061702
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +586,6 @@ MonoBehaviour:
   WebglLookSensitivityMultiplier: 0.25
   TriggerAxisThreshold: 0.4
   InvertYAxis: 0
-  InvertXAxis: 0
 --- !u!114 &557267097344741416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,21 +599,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 7029566833271223142}
-  GravityDownForce: 20
+  GravityDownForce: 30
   GroundCheckLayers:
     serializedVersion: 2
     m_Bits: 1
   GroundCheckDistance: 1
-  MaxSpeedOnGround: 13
+  MaxSpeedOnGround: 6
   MovementSharpnessOnGround: 15
   MaxSpeedCrouchedRatio: 0.5
-  MaxSpeedInAir: 10
-  AccelerationSpeedInAir: 25
+  MaxSpeedInAir: 9
+  AccelerationSpeedInAir: 10
   SprintSpeedModifier: 1.5
   KillHeight: -50
   RotationSpeed: 200
   AimingRotationMultiplier: 0.4
-  JumpForce: 9
+  JumpForce: 8
   CameraHeightRatio: 0.8
   CapsuleHeightStanding: 1.8
   CapsuleHeightCrouching: 0.9
@@ -680,15 +661,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 4442383239853987298}
   m_Photo: {fileID: 5778655821380479053}
-  ItemCamera: {fileID: 1690524807991772034}
-  m_ReferenceDaVinciCamera: {fileID: 4061324835735246602}
   ItemParentSocket: {fileID: 8797320422648508640}
   DefaultItemPosition: {fileID: 5433859531211775240}
   AimingItemPosition: {fileID: 6702188704880190571}
   DownItemPosition: {fileID: 417686792239014018}
-  FpsItemLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   AimingAnimationSpeed: 1
 --- !u!1 &9167940918902517130
 GameObject:
@@ -878,6 +854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7524760376421698666, guid: 7e1abb377025c5b44aa32835268f9524,
         type: 3}
+      propertyPath: AimOffset.z
+      value: -0.29145
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524760376421698666, guid: 7e1abb377025c5b44aa32835268f9524,
+        type: 3}
       propertyPath: CameraObjects
       value: 
       objectReference: {fileID: 4061324835735246602}
@@ -924,6 +905,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 430724260949633067, guid: e67c474567f69374f9cb985bb1af973b,
+        type: 3}
+      propertyPath: _Photo
+      value: 
+      objectReference: {fileID: 5778655821380479053}
     - target: {fileID: 430724260949633067, guid: e67c474567f69374f9cb985bb1af973b,
         type: 3}
       propertyPath: SkyCamera
