@@ -32,13 +32,13 @@ namespace ViewFinder.Gameplay
         void Awake()
         { 
             planes = new Plane[6];
-            
+
             if (BackgroundMaterial is null)
             {
                 BackgroundMaterial = new Material(Shader.Find("Unlit/Texture"))
                 {
                     mainTexture = BackgroundTexture,
-                    color = Color.white
+                    color       = Color.white
                 };
                 BackgroundMaterial.SetInt("_Smoothness", 0);
             }
