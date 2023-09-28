@@ -34,7 +34,9 @@ This script just tell to `_Photo` to take a "picture" by using the `SayCheese()`
 
 ### Photo
 `SayCheese()` get the frustrum planes, get the `Slicerable` objects that are in the frustum and get the images for the background and the `Photo` object.
+
 The `CopyObjects()` copy the objects (the `lightmapIndex` and `lightmapScaleOffset` are not Serialized so they can't be copied normally), cut the meshes and set the PhotoOutput object (a object with the same orientation of camera) as it parent and after all objects it sets the PhotoOutput as inactive. This method maybe will use Jobs in the future.
+
 The `OnUse()` set the PhotoOutput as active and set the orientation to the same of camera again.
 
 ### Slicerable
@@ -43,3 +45,5 @@ It's just a script to separate the objects that can be copied and cutted from th
 ### MeshUtils
 A static class that has some methods for mesh manipulation.
 The meshes just are cutted in `MeshCut()`. The steps of this code are showed in my video.
+
+The code is obscure and incomplete. I'm looking for a balance between performance and reability, so probally this will be rewrited soon.
