@@ -69,7 +69,7 @@ namespace ViewFinder.Gameplay
         }
 
 
-        public void SayX()
+        public void SayCheese()
         {
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
             projections = new List<Slicerable>();

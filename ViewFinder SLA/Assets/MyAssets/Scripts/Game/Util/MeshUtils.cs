@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class MeshUtils
+public static class MeshUtils
 {
     // TODO: Make a new Method like this but with MeshData(for Jobs)
     // TODO: Instead of use transform methods on points, use transform methods the plane  

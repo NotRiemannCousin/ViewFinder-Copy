@@ -15,7 +15,7 @@ namespace ViewFinder.Gameplay
         #region Additional Methods
         protected override void OnUse()
         {
-            _Photo.SayX();
+            _Photo.SayCheese();
         }
         #endregion
 
