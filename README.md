@@ -25,7 +25,7 @@ An exercise in Unity involves recreating a game mechanic from a game called 'Vie
 ## Relevant Scripts
 
 ### ItemController, PlayerItemsManager, etc
-These scripts regulate the exchange of items. The `Photo` and `CameraScript` are the unique Items in this project. Adapted from the scripts in the 3D FPS sample from Unity. 
+These scripts regulate the exchange of items. The `Photo` and `CameraScript` are the unique Items in this project. Adapted from the scripts in the FPS Microgame from Unity. 
 
 ### CameraScript
 This script just tell to `_Photo` to take a "picture" by using the `SayCheese()` method when `OnUse()`. No big deal...
