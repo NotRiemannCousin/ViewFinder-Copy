@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4806087139725642523}
   - component: {fileID: 430724260949633067}
   m_Layer: 0
-  m_Name: DaVinciCamera
+  m_Name: CameraScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

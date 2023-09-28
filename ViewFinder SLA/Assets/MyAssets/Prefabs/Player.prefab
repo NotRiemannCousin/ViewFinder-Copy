@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaec16a15833504ba0b069be10368d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 4442383239853987298}
+  m_Camera: {fileID: 1396997832459730258}
   m_Photo: {fileID: 5778655821380479053}
   ItemParentSocket: {fileID: 8797320422648508640}
   DefaultItemPosition: {fileID: 5433859531211775240}
@@ -898,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 224685591770003997, guid: e67c474567f69374f9cb985bb1af973b,
         type: 3}
       propertyPath: m_Name
-      value: DaVinciCamera
+      value: CameraScript
       objectReference: {fileID: 0}
     - target: {fileID: 224685591770003997, guid: e67c474567f69374f9cb985bb1af973b,
         type: 3}
@@ -1007,6 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4806087139725642523, guid: e67c474567f69374f9cb985bb1af973b, type: 3}
+    - {fileID: 430724260949633067, guid: e67c474567f69374f9cb985bb1af973b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e67c474567f69374f9cb985bb1af973b, type: 3}
 --- !u!4 &3461394122924350830 stripped
 Transform:
@@ -1014,15 +1015,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4061324837450087881}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4442383239853987298 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 430724260949633067, guid: e67c474567f69374f9cb985bb1af973b,
+--- !u!1 &4270124041462319060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 224685591770003997, guid: e67c474567f69374f9cb985bb1af973b,
     type: 3}
   m_PrefabInstance: {fileID: 4061324837450087881}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1396997832459730258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4270124041462319060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22f63d4d6b33084396c494a0e442f80, type: 3}
+  m_Script: {fileID: 11500000, guid: 624e1ec63f71d3a4697eb0a3baf3f38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AimOffset: {x: 0, y: 0, z: -0.2}
+  SkyCamera: {fileID: 477836928}
+  CameraTarget: {fileID: 4061324835735246602}
+  _Photo: {fileID: 5778655821380479053}

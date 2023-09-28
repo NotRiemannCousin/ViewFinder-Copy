@@ -17,7 +17,7 @@ namespace ViewFinder.Managers
     public class PlayerItemsManager : MonoBehaviour
     {
         [Tooltip("The camera for DaVinci Camera")]
-        public DaVinciCamera m_Camera;
+        public CameraScript m_Camera;
 
         [Tooltip("The photo for DaVinci Camera")]
         public Photo m_Photo;
