@@ -37,17 +37,20 @@ RMB will toggle between default state and focus state. When in focus, LMB will e
 This script just tell to `_Photo` to take a "picture" by using the `SayCheese()` on the `OnUse()` method. No big deal...
 
 ### Photo -> ItemController
-`SayCheese()` get the frustrum planes, get the `Slicerable` objects that are in the frustum and get the images for the background and the `Photo` object.
+`SayCheese()` gets the planes of the frustum, gets the `Slicerable` objects that are in the frustum and gets the images of the background and the `Photo` object.
 
-The `CopyObjects()` copy the objects (the `lightmapIndex` and `lightmapScaleOffset` are not Serialized so they can't be copied normally), cut the meshes and set the PhotoOutput object (a object with the same orientation of camera) as it parent and after all objects it sets the PhotoOutput as inactive. This method maybe will use Jobs in the future.
+`CopyObjects()` copies the objects (`lightmapIndex` and `lightmapScaleOffset` are not serialized, so they cannot be copied normally),
+cuts the meshes and places the PhotoOutput as its parent (PhotoOutput an object created with the same orientation as the camera). Then it sets the PhotoOutput to inactive. This method will perhaps be using Jobs in the future.
 
-The `OnUse()` set the PhotoOutput as active and set the orientation to the same of camera again.
+`OnUse()` sets the PhotoOutput to active again and sets its orientation to the same as the camera.
 
 ### Slicerable
-It's just a script to separate the objects that can be copied and cutted from that cannot. It's also holds some data like the material of the cutted faces.
+It's just a script to separate objects that can be copied and cut from those that can't. It also contains some data such as the material of the cut faces.
 
 ### MeshUtils
 A static class that has some methods for mesh manipulation.
 The meshes just are cutted in `MeshCut()`. The steps of this code are showed in my video.
 
-The code is obscure and incomplete. I'm looking for a balance between performance and readability, so probally this will be rewrited soon.
+A static class that has some methods for mesh manipulation. Meshes are only cut in MeshCut(). The steps of this code are shown in my video.
+
+The code is a bit obscure and incomplete. I'm looking for a balance between performance and readability, so this will probably be rewritten soon using `MeshData`.
