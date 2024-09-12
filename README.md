@@ -27,30 +27,30 @@ An exercise in Unity involves recreating a game mechanic from a game called 'Vie
 ## Relevant Scripts
 
 ### ItemController, PlayerItemsManager, etc
-These scripts regulate the exchange of items. The `Photo` and `CameraScript` are the unique Items in this project. Adapted from the scripts in the FPS Microgame from Unity (templete I used).
+These scripts regulate the change of items. The `Photo` and `CameraScript` are the unique Items in this project. Adapted from the scripts in the FPS Microgame from Unity (templete I used).
 
 RMB will toggle between default state and focus state. When in focus, LMB will execute the `OnUse()` and select the other Item.
 
 ![Actions Map](./imgs/ActionsMap.webp)
 
 ### CameraScript -> ItemController
-This script just tell to `_Photo` to take a "picture" by using the `SayCheese()` on the `OnUse()` method. No big deal...
+This script tells `_Photo` to take a capture using `SayCheese()` when `OnUse()`.
 
 ### Photo -> ItemController
-`SayCheese()` gets the planes of the frustum, gets the `Slicerable` objects that are in the frustum and gets the images of the background and the `Photo` object.
+`SayCheese()` gets the frustum with the `Slicerable` objects that are inside it, the background image of photo and the `Photo` object.
 
-`CopyObjects()` copies the objects (`lightmapIndex` and `lightmapScaleOffset` are not serialized, so they cannot be copied normally),
+`CopyObjects()` copies the objects (`lightmapIndex` and `lightmapScaleOffset` are not serialized, so they cannot be copied in the standard way),
 cuts the meshes and places the PhotoOutput as its parent (PhotoOutput an object created with the same orientation as the camera). Then it sets the PhotoOutput to inactive. This method will perhaps be using Jobs in the future.
 
 `OnUse()` sets the PhotoOutput to active again and sets its orientation to the same as the camera.
 
 ### Slicerable
-It's just a script to separate objects that can be copied and cut from those that can't. It also contains some data such as the material of the cut faces.
+A script to determine if an object can be copied and cut. It also contains additional data like the material of the new faces.
 
 ### MeshUtils
 A static class that has some methods for mesh manipulation.
-The meshes just are cutted in `MeshCut()`. The steps of this code are showed in my video.
+`MeshCut()` is the meshes that really cut the meshes. The steps of this method are showed in the video.
 
 A static class that has some methods for mesh manipulation. Meshes are only cut in MeshCut(). The steps of this code are shown in my video.
 
-The code is a bit obscure and incomplete. I'm looking for a balance between performance and readability, so this will probably be rewritten soon using `MeshData`.
+The code is a little bit obscure and incomplete. I'm still looking for a balance between performance and readability, so this will probably be rewritten someday with `MeshData`.
