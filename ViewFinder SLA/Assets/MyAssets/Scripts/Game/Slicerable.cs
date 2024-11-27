@@ -1,30 +1,20 @@
 using UnityEngine;
 using UnityEditor;
 
-<<<<<<< HEAD
 
 namespace ViewFinder.Gameplay
 {
     [DisallowMultipleComponent]
-=======
-namespace ViewFinder.Gameplay
-{
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
     [RequireComponent(typeof(Renderer))]
     [RequireComponent(typeof(MeshFilter))]
     public class Slicerable : MonoBehaviour
     {
         static Material DefaultMaterial;
-<<<<<<< HEAD
         static readonly string ShaderString = "Universal Render Pipeline/Unlit";
-=======
-        static readonly string ShaderString = "Universal Render Pipeline/Lit";
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
 
 
         [Tooltip("The material asigned to the new triangles created by the planes intersections")]
         [SerializeField] Material CuttingMaterial = null;
-<<<<<<< HEAD
         public bool IsCopy { get; private set; } = false;
 
 
@@ -46,9 +36,6 @@ namespace ViewFinder.Gameplay
             };
         }
     
-=======
-        public bool isCopy { get; private set; } = false;
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
 
 
 
@@ -69,7 +56,6 @@ namespace ViewFinder.Gameplay
             };
             DefaultMaterial.SetInt("_Smoothness", 0);
         }
-<<<<<<< HEAD
     
         private void OnValidate()
         {
@@ -91,29 +77,6 @@ namespace ViewFinder.Gameplay
                 parent = parent.parent;
             }
             return false;
-=======
-        void Start()
-        {
-            // CuttingMaterial = null;
-            // UnityEngine.Debug.Log(CuttingMaterial?.shader + " " +
-            // (CuttingMaterial is null));
-            // CuttingMaterial = CuttingMaterial ?? DefaultMaterial;
-            // if(CuttingMaterial is null || CuttingMaterial?.shader is null)
-            if (!CuttingMaterial || !CuttingMaterial.shader)
-                CuttingMaterial = DefaultMaterial;
-        }
-        public void SetAsCopy()
-        {
-            if (isCopy)
-                return;
-            isCopy = true;
-            var render = GetComponent<Renderer>();
-
-            render.materials = new Material[] {
-                render.material,
-                CuttingMaterial
-            };
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
         }
     }
 }

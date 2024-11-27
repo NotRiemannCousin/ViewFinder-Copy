@@ -1,14 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-<<<<<<< HEAD
 using UnityEngine;
 using Unity.Jobs;
-=======
-using Unity.Jobs;
-using UnityEngine;
-using Unity.Collections;
-using static UnityEngine.Mesh;
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
 
 // TODO: Make this run using Jobs
 // TODO: Crop the objects that are already in the scene but with reverse Planes
@@ -25,11 +18,7 @@ namespace ViewFinder.Gameplay
 
         GameObject PhotoOutputParent;
         Texture PictureTexture;
-<<<<<<< HEAD
         List<Slicerable> Projections;
-=======
-        List<Slicerable> projections;
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
         Plane[] planes;
 
 
@@ -42,11 +31,7 @@ namespace ViewFinder.Gameplay
         { 
             planes = new Plane[6];
 
-<<<<<<< HEAD
             if (BackgroundMaterial == null)
-=======
-            if (BackgroundMaterial is null)
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
             {
                 BackgroundMaterial = new Material(Shader.Find("Unlit/Texture"))
                 {
@@ -66,7 +51,6 @@ namespace ViewFinder.Gameplay
             {
                 vertices = new Vector3[]
                 {
-<<<<<<< HEAD
                     new(-length,  length, distance),
                     new( length,  length, distance),
                     new( length, -length, distance),
@@ -90,24 +74,10 @@ namespace ViewFinder.Gameplay
                     Vector2.zero,
                     Vector2.zero,
                     Vector2.zero
-=======
-                    new Vector3(-length, length, distance),
-                    new Vector3(length, length, distance),
-                    new Vector3(length, -length, distance),
-                    new Vector3(-length, -length, distance),
-                },
-                triangles = new[] { 0, 1, 3, 1, 2, 3 },
-                uv = new[] {
-                    new Vector2(0, 1),
-                    new Vector2(1, 1),
-                    new Vector2(1, 0),
-                    new Vector2(0, 0),
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
                 }
             };
         }
 
-<<<<<<< HEAD
         private IEnumerable<Slicerable> GetObjectsInFrustum(){
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
 
@@ -152,42 +122,16 @@ namespace ViewFinder.Gameplay
         {
             Projections = GetObjectsInFrustum().ToList();
 
-=======
-
-        public void SayCheese()
-        {
-            GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
-            projections = new List<Slicerable>();
-
-            Slicerable[] Projections = FindObjectsOfType<Slicerable>().Where(p => p.isActiveAndEnabled).ToArray();
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
             BackgroundTexture = TextureUtils.GetScreenshot(CameraBackground);
             PictureTexture = TextureUtils.GetScreenshot(CameraObjects);
 
             GetComponent<Renderer>().material.mainTexture = PictureTexture;
 
-<<<<<<< HEAD
-=======
-            foreach (var projection in Projections)
-            {
-                if (!projection.gameObject.activeInHierarchy)
-                    continue;
-                projection.TryGetComponent<Renderer>(out var renderer);
-                if (!renderer)
-                    continue;
-
-                var bounds = renderer.bounds;
-
-                if (GeometryUtility.TestPlanesAABB(planes, bounds))
-                    projections.Add(projection);
-            }
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
             gameObject.SetActive(true);
 
             CopyObjects();
 
             #region background image
-<<<<<<< HEAD
             var PhotoBackground = Instantiate(new GameObject("Photo Background"), PhotoOutputParent.transform);
             var rend = PhotoBackground.AddComponent<MeshRenderer>();
             
@@ -195,12 +139,6 @@ namespace ViewFinder.Gameplay
             rend.material.mainTexture = BackgroundTexture;
             PhotoBackground.AddComponent<MeshFilter>().sharedMesh = BackgroundMesh;
             PhotoBackground.AddComponent<Slicerable>().SetAsCopy();
-=======
-            var rend = PhotoOutputParent.AddComponent<MeshRenderer>();
-            rend.material = BackgroundMaterial;
-            rend.material.mainTexture = BackgroundTexture;
-            PhotoOutputParent.AddComponent<MeshFilter>().sharedMesh = BackgroundMesh;
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
             #endregion
 
         }
@@ -208,7 +146,6 @@ namespace ViewFinder.Gameplay
         public void CopyObjects()
         {
             PhotoOutputParent = new GameObject("Photo Output");
-<<<<<<< HEAD
             PhotoOutputParent.transform.SetPositionAndRotation(CameraObjects.transform.position, CameraObjects.transform.rotation);
             foreach (var original in Projections)
             {
@@ -217,27 +154,6 @@ namespace ViewFinder.Gameplay
                 MeshUtils.CutByPlanes(copy, planes);
 
                 if (copy.GetComponent<MeshFilter>().mesh.vertices.Length == 0)
-=======
-            PhotoOutputParent.transform.position = CameraObjects.transform.position;
-            PhotoOutputParent.transform.rotation = CameraObjects.transform.rotation;
-
-            foreach (var original in projections)
-            {
-                var copy = Instantiate(
-                        original,
-                        PhotoOutputParent.transform,
-                        true
-                    );
-                var renderCopy = copy.GetComponent<Renderer>();
-                var renderOriginal = original.GetComponent<Renderer>();
-                copy.SetAsCopy();
-
-                renderCopy.lightmapIndex = renderOriginal.lightmapIndex;
-                renderCopy.lightmapScaleOffset = renderOriginal.lightmapScaleOffset;
-                MeshUtils.CutByPlanes(copy, planes);
-
-                if (copy.GetComponent<MeshFilter>()?.mesh.vertices.Length == 0)
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
                     Destroy(copy);
             }
             PhotoOutputParent.SetActive(false);
@@ -245,7 +161,6 @@ namespace ViewFinder.Gameplay
 
         protected override void OnUse()
         {
-<<<<<<< HEAD
             Projections = GetObjectsInFrustum().ToList();
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
 
@@ -269,11 +184,6 @@ namespace ViewFinder.Gameplay
             
             PhotoOutputParent.transform.SetPositionAndRotation(CameraObjects.transform.position, CameraObjects.transform.rotation);
             PhotoOutputParent.SetActive(true);
-=======
-            PhotoOutputParent.SetActive(true);
-            PhotoOutputParent.transform.position = CameraObjects.transform.position;
-            PhotoOutputParent.transform.rotation = CameraObjects.transform.rotation;
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
         }
     }
 }
