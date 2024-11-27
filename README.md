@@ -1,6 +1,6 @@
 # Viewfinder Copy
 
-An exercise in Unity involves recreating a game mechanic from a game called 'Viewfinder'. This mechanic revolves around copying objects based on the camera perspective and then placing them back into the world.
+An exercise in Unity with the goal of recreating a mechanic from a game called 'Viewfinder'. This mechanic revolves around copying objects based on the camera's perspective and then placing them back into the world.
 
 *Version: Unity 2021.3.15f1*
 
