@@ -9,7 +9,10 @@
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+<<<<<<< HEAD
 [Pp]roject[Ss]ettings/
+=======
+>>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data

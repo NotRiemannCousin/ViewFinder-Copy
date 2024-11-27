@@ -336,6 +336,7 @@ public static class MeshUtils
 
 
 
+<<<<<<< HEAD
     public static void CutByPlanes(Slicerable obj, IEnumerable<Plane> planes, bool cutColliders = true)
     {
         if(!obj.TryGetComponent<MeshFilter>(out var meshFilter)) return;
@@ -345,12 +346,26 @@ public static class MeshUtils
             return;
 
 
+=======
+
+    public static void CutByPlanes(Slicerable obj, IEnumerable<Plane> planes, bool cutCollider = true)
+    {
+        obj.TryGetComponent<MeshFilter>(out var meshFilter);
+        Mesh mesh = meshFilter?.mesh;
+
+        if (!mesh)
+            return;
+>>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
         var t = obj.transform;
         foreach (var plane in planes)
             MeshCut(plane, mesh, t);
         mesh.Optimize();
 
+<<<<<<< HEAD
         if (!cutColliders)
+=======
+        if (!cutCollider)
+>>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
             return;
 
         // mesh = CollidersToMesh(obj);
@@ -365,9 +380,15 @@ public static class MeshUtils
         var terrainColliders = obj.GetComponents<TerrainCollider>();
 
 
+<<<<<<< HEAD
         meshColliders.ToList().ForEach(   c => c.enabled = false);
         boxColliders.ToList().ForEach(    c => c.enabled = false);
         sphereColliders.ToList().ForEach( c => c.enabled = false);
+=======
+        meshColliders.ToList().ForEach(c => c.enabled = false);
+        boxColliders.ToList().ForEach(c => c.enabled = false);
+        sphereColliders.ToList().ForEach(c => c.enabled = false);
+>>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
         capsuleColliders.ToList().ForEach(c => c.enabled = false);
         terrainColliders.ToList().ForEach(c => c.enabled = false);
 
