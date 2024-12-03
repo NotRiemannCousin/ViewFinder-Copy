@@ -174,7 +174,7 @@ namespace ViewFinder.Gameplay
                     MeshUtils.CutByPlanes(copy, new[]{ plane.flipped });
 
                     if (copy.GetComponent<MeshFilter>().mesh.vertices.Length == 0)
-                    Destroy(copy);
+                        Destroy(copy);
                 }
 
                 projection.gameObject.SetActive(false);
