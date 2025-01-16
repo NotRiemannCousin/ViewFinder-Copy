@@ -164,26 +164,35 @@ namespace ViewFinder.Gameplay
             Projections = GetObjectsInFrustum().ToList();
             GeometryUtility.CalculateFrustumPlanes(CameraObjects, planes);
 
-            var replace = new GameObject("Replace");
-
-            foreach(var projection in Projections)
-            {
-                foreach(var plane in planes)
-                {
-                    var copy = DeepCopy(projection, replace.transform);
-                    MeshUtils.CutByPlanes(copy, new[]{ plane.flipped });
-
-                    if (copy.GetComponent<MeshFilter>().mesh.vertices.Length == 0)
-                        Destroy(copy);
-                }
-
-                projection.gameObject.SetActive(false);
-            }
+            CutByFlippedPlanes();            
 
 
             
             PhotoOutputParent.transform.SetPositionAndRotation(CameraObjects.transform.position, CameraObjects.transform.rotation);
             PhotoOutputParent.SetActive(true);
+
+
+            void CutByFlippedPlanes(){
+                var replace = new GameObject("By Flipped Planes");
+
+                foreach(var projection in Projections)
+                {
+                    foreach(var plane in planes)
+                    {
+                        var copy = DeepCopy(projection, replace.transform);
+                        MeshUtils.CutByPlanes(copy, new[]{ plane.flipped });
+
+                        if (copy.GetComponent<MeshFilter>().mesh.vertices.Length == 0)
+                            Destroy(copy);
+                    }
+
+                    projection.gameObject.SetActive(false);
+                }
+            }
+        
+            void CutByInclusionExclusionPlanes(){
+                var replace = new GameObject("By IncExc Planes");
+            }
         }
     }
 }
