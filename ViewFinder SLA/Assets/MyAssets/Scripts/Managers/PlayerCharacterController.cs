@@ -416,7 +416,7 @@ namespace ViewFinder.Managers
                         m_Controller.radius,
                         -1,
                         QueryTriggerInteraction.Ignore);
-                    foreach (Collider c in standingOverlaps)
+                    foreach(Collider c in standingOverlaps)
                     {
                         if (c != m_Controller)
                         {

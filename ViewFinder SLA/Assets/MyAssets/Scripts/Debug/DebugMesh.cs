@@ -28,7 +28,7 @@ namespace ViewFinder.Debug
             if (verts == null)
                 return;
 
-            for (int i = 0; i < verts.Length; i++)
+            for(int i = 0; i < verts.Length; i++)
             {
                 var vertex = verts[i];
                 var normal = norms[i];
@@ -51,7 +51,7 @@ namespace ViewFinder.Debug
             if (showTrigs)
             {
                 Gizmos.color = Color.yellow;
-                for (var i = 0; i < verts.Length; i += 3)
+                for(var i = 0; i < verts.Length; i += 3)
                 {
                     var v1 = verts[mesh.triangles[i]];
                     var v2 = verts[mesh.triangles[i + 1]];
