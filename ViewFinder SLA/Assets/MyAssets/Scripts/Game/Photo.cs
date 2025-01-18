@@ -129,7 +129,13 @@ namespace ViewFinder.Gameplay
 
             gameObject.SetActive(true);
 
+            // Make a Clock to check if the photo is done
+
+            var time = System.Diagnostics.Stopwatch.GetTimestamp();
             CopyObjects();
+            time = System.Diagnostics.Stopwatch.GetTimestamp() - time;
+            UnityEngine.Debug.Log($"Copied objects in {time}");
+
 
             #region background image
             var PhotoBackground = Instantiate(new GameObject("Photo Background"), PhotoOutputParent.transform);
@@ -147,7 +153,7 @@ namespace ViewFinder.Gameplay
         {
             PhotoOutputParent = new GameObject("Photo Output");
             PhotoOutputParent.transform.SetPositionAndRotation(CameraObjects.transform.position, CameraObjects.transform.rotation);
-            foreach (var original in Projections)
+            foreach(var original in Projections)
             {
                 var copy = DeepCopy(original, PhotoOutputParent.transform);
 
@@ -218,7 +224,7 @@ namespace ViewFinder.Gameplay
 
 //     public void Execute()
 //     {
-//         for (int i = 0; i < readMeshes.Length; i++)
+//         for(int i = 0; i < readMeshes.Length; i++)
 //         {
 //             var mesh = writeMeshes[i];
 //             // MeshUtils.CopyMesh(readMeshes[i], ref mesh);

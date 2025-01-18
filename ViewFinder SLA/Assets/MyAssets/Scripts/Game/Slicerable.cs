@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 
 namespace ViewFinder.Gameplay
@@ -15,7 +16,7 @@ namespace ViewFinder.Gameplay
 
         [Tooltip("The material asigned to the new triangles created by the planes intersections")]
         [SerializeField] Material CuttingMaterial = null;
-        public bool IsCopy { get; private set; } = false;
+        [field: SerializeField] public bool IsCopy { get; private set; } = false;
 
 
         void Start()
@@ -29,11 +30,12 @@ namespace ViewFinder.Gameplay
                 return;
             IsCopy = true;
             var render = GetComponent<Renderer>();
+            var mats = render.materials.ToList();
 
-            render.materials = new Material[] {
-                render.material,
-                CuttingMaterial
-            };
+            mats.Add(CuttingMaterial);
+            render.materials = mats.ToArray();
+            var mesh = GetComponent<MeshFilter>().mesh;
+            mesh.subMeshCount++;
         }
     
 
