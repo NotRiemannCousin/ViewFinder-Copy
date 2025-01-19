@@ -53,8 +53,4 @@ A static class that has some methods for mesh manipulation.
 
 A static class that has some methods for mesh manipulation. Meshes are only cut in MeshCut(). The steps of this code are shown in my video.
 
-<<<<<<< HEAD
 The code is a little bit obscure and incomplete. I'm still looking for a balance between performance and readability, so this will probably be rewritten someday with `MeshData`.
-=======
-The code is a little bit obscure and incomplete. I'm still looking for a balance between performance and readability, so this will probably be rewritten someday with `MeshData`.
->>>>>>> 2447bc270d4931fc51d76d0d95e79f77c935282a
